@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #06e2d3, #69dc0a);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.converter-box {
+    background-color: #1ef1b8;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    animation: slide-up 0.6s ease-out;
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, select {
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #2980b9;
+    outline: none;
+    box-shadow: 0 0 10px rgba(41, 128, 185, 0.3);
+}
+
+button.btn {
+    margin-top: 20px;
+    padding: 15px 25px;
+    width: 100%;
+    background-color: #09b7da;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button.btn:hover {
+    background-color: #21618c;
+    transform: scale(1.05);
+}
+
+button.btn:active {
+    transform: scale(0.98);
+}
+
+#result {
+    margin-top: 25px;
+    font-size: 20px;
+    color: #03111b;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .converter-box {
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button.btn {
+        padding: 12px;
+    }
+}
