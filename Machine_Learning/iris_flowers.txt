@@ -1,0 +1,75 @@
+import pandas as pd
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report, confusion_matrix
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data  # Features
+y = iris.target  # Target labels 
+
+# Convert to DataFrame for better visualization (optional)
+df = pd.DataFrame(X, columns=iris.feature_names)
+df['species'] = y
+print(df.head())
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Scale the features (optional but recommended for some algorithms)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Train a Logistic Regression model
+lr = LogisticRegression(random_state=42, max_iter=200)  # Increase max_iter for convergence
+lr.fit(X_train, y_train)
+
+# Predict
+y_pred_lr = lr.predict(X_test)
+
+# Evaluate Logistic Regression
+print("Logistic Regression Performance:")
+print("Accuracy:", accuracy_score(y_test, y_pred_lr))
+print("Precision:", precision_score(y_test, y_pred_lr, average='weighted'))
+print("Recall:", recall_score(y_test, y_pred_lr, average='weighted'))
+print("F1-Score:", f1_score(y_test, y_pred_lr, average='weighted'))
+print("Classification Report:\n", classification_report(y_test, y_pred_lr))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_lr))
+
+# Train a Decision Tree model
+tree = DecisionTreeClassifier(random_state=42)
+tree.fit(X_train, y_train)
+
+# Predict
+y_pred_tree = tree.predict(X_test)
+
+# Evaluate Decision Tree
+print("\nDecision Tree Performance:")
+print("Accuracy:", accuracy_score(y_test, y_pred_tree))
+print("Precision:", precision_score(y_test, y_pred_tree, average='weighted'))
+print("Recall:", recall_score(y_test, y_pred_tree, average='weighted'))
+print("F1-Score:", f1_score(y_test, y_pred_tree, average='weighted'))
+print("Classification Report:\n", classification_report(y_test, y_pred_tree))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_tree))
+
+# Train an SVM model
+svm = SVC(kernel='linear', random_state=42)  # Use 'linear' kernel for simplicity
+svm.fit(X_train, y_train)
+
+# Predict
+y_pred_svm = svm.predict(X_test)
+
+# Evaluate SVM
+print("\nSVM Performance:")
+print("Accuracy:", accuracy_score(y_test, y_pred_svm))
+print("Precision:", precision_score(y_test, y_pred_svm, average='weighted'))
+print("Recall:", recall_score(y_test, y_pred_svm, average='weighted'))
+print("F1-Score:", f1_score(y_test, y_pred_svm, average='weighted'))
+print("Classification Report:\n", classification_report(y_test, y_pred_svm))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_svm))
